@@ -19,12 +19,6 @@ Then open http://localhost:4200
 
 Built with **Angular 19** (standalone components, signals, zone.js). Node 18.19+ / 20.11+ / 22 is needed.
 
-Run the tests (Karma + Jasmine, in Chrome Headless):
-
-```bash
-npm run test:ci
-```
-
 ## Features
 
 - **Courses page** (`/courses`): course cards (image, title, instructor, lessons count, progress %), a "Continue watching" card, and search.
@@ -41,11 +35,6 @@ npm run test:ci
 - **States**: loading, error, a course without lessons, and a broken video.
 - **Progress is saved in localStorage**, so it stays after refresh.
 - **Arabic / English** switch.
-
-### Test data
-- The **Pharmacology** course has no lessons, to show the empty state.
-- The last lesson of **Physiology** points to a video that doesn't exist, to show the video error.
-- I made the videos myself (a canvas animation recorded in the browser). They are short (15–25 seconds) so the 90% rule is easy to test.
 
 ## Project structure
 
@@ -78,32 +67,3 @@ Every component has its own `.ts`, `.html` and `.css` file.
 - **RTL:** the page has `dir="rtl"`. I used flex and `gap` so the layout flips by itself. The seek bar is an `<input type="range">`, so it fills from the right in Arabic. Arrow keys are also flipped in Arabic. The time is inside `dir="ltr"` so it shows as `0:06 / 0:15`.
 - No UI library. It's a small app and plain CSS is enough.
 
-## Tests
-
-- `progress.service.spec.ts`:
-  - the 90% rule (89% no, 90% yes, duration 0)
-  - a completed lesson stays completed
-  - the unlock rule, including between two sections
-  - progress % (0%, 25%, 50%, and a course without lessons)
-  - progress is still there after a refresh
-  - continue watching
-- `lesson.guard.spec.ts`: the first lesson opens, a locked lesson redirects to `/courses/c1?locked=true`, a lesson opens after completing the previous one, and a wrong id is allowed so the page shows "not found".
-
-## Known issues / trade-offs
-
-- The 90% rule checks the position, so a student can drag the seek bar to 90% and the lesson is completed. To fix it, I'd track the parts the student really watched.
-- Progress is saved on every `timeupdate` (about 4 times per second). That's fine for localStorage, but with an API I would save every few seconds and on pause.
-- If the app is open in two tabs, the last tab that saves wins.
-- On iPhone, fullscreen works only on the `<video>` element itself, so my fullscreen button won't work there.
-- When you reopen a completed lesson it starts from the beginning.
-
-## With more time
-
-- Dark mode and per-lesson notes (bonus).
-- Track the watched parts for the 90% rule.
-- Tests for the video player component.
-- Hide the controls while the video is playing.
-
-## Time spent
-
-About _X_ hours.
