@@ -3,6 +3,11 @@
 A small student portal for watching course videos. The UI is Arabic first (RTL) with an English switch.
 Everything is offline: the courses are in `src/assets/data/courses.json` and the videos are in `src/assets/videos/`.
 
+**Live demo:** https://thaheen-courses.netlify.app
+
+It is deployed on Netlify (build: `npm run build`, publish: `dist/thaheen-lms/browser`).
+`public/_redirects` sends every URL to `index.html`, so direct links and refresh work.
+
 ## How to run
 
 ```bash

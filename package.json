@@ -8,8 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "test:ci": "ng test --watch=false --browsers=ChromeHeadless",
-    "format": "prettier --write \"src/**/*.{ts,html,css}\"",
-    "build:pages": "ng build --base-href /thaheen-lms/ && node -e \"require('fs').copyFileSync('dist/thaheen-lms/browser/index.html','dist/thaheen-lms/browser/404.html')\""
+    "format": "prettier --write \"src/**/*.{ts,html,css}\""
   },
   "private": true,
   "dependencies": {
