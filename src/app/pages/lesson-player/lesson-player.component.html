@@ -1,0 +1,61 @@
+@if (courseService.loading()) {
+  <div class="state-message">
+    <p class="state-message-title">{{ lang.t('loading') }}</p>
+  </div>
+} @else if (courseService.error()) {
+  <div class="state-message state-message-error">
+    <p class="state-message-title">{{ lang.t('loadError') }}</p>
+  </div>
+} @else {
+  @if (lesson(); as lesson) {
+    <a [routerLink]="['/courses', courseId()]" class="back-link">{{ lang.t('backToCourse') }}</a>
+
+    <div class="lesson-page">
+      <div class="lesson-video">
+        <app-video-player
+          [videoUrl]="lesson.video"
+          [startTime]="getStartTime()"
+          (timeUpdate)="onTimeUpdate($event)"
+        />
+        <p class="shortcuts-text">{{ lang.t('shortcuts') }}</p>
+      </div>
+
+      <div class="lesson-sidebar">
+        <h1 class="lesson-title">{{ lang.text(lesson.title) }}</h1>
+
+        @if (isCompleted()) {
+          <p class="completed-badge">{{ lang.t('lessonCompleted') }}</p>
+        }
+
+        @if (nextLesson(); as next) {
+          @if (isNextLessonUnlocked()) {
+            <a
+              class="button button-primary"
+              [routerLink]="['/courses', courseId(), 'lessons', next.id]"
+            >
+              {{ lang.t('nextLesson') }}
+            </a>
+          } @else {
+            <button type="button" class="button button-primary" disabled>
+              🔒 {{ lang.t('nextLesson') }}
+            </button>
+            <p class="hint-text">{{ lang.t('nextLessonHint') }}</p>
+          }
+        } @else if (isCompleted()) {
+          <p class="hint-text">{{ lang.t('courseFinished') }}</p>
+        }
+
+        <a class="button button-outline" [routerLink]="['/courses', courseId()]">
+          {{ lang.t('backToCourse') }}
+        </a>
+      </div>
+    </div>
+  } @else {
+    <!-- wrong lesson id or course id in the url -->
+    <div class="state-message">
+      <p class="state-message-title">{{ lang.t('lessonNotFound') }}</p>
+      <p>{{ lang.t('lessonNotFoundHint') }}</p>
+      <a routerLink="/courses" class="button button-primary">{{ lang.t('backToCourses') }}</a>
+    </div>
+  }
+}

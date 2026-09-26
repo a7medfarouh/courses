@@ -1,0 +1,16 @@
+<header class="header">
+  <div class="header-content">
+    <a routerLink="/courses" class="logo">
+      <span class="logo-icon">T</span>
+      <span>{{ lang.t('appName') }}</span>
+    </a>
+
+    <button type="button" class="language-button" (click)="lang.toggleLanguage()">
+      {{ lang.t('switchLanguage') }}
+    </button>
+  </div>
+</header>
+
+<main class="main-content">
+  <router-outlet />
+</main>

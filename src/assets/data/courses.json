@@ -1,0 +1,60 @@
+{
+  "courses": [
+    {
+      "id": "anatomy-101",
+      "title": { "ar": "أساسيات علم التشريح", "en": "Anatomy Fundamentals" },
+      "instructor": { "ar": "د. سارة المنصور", "en": "Dr. Sara Al-Mansour" },
+      "thumbnail": "assets/images/anatomy.svg",
+      "sections": [
+        {
+          "id": "skeletal",
+          "title": { "ar": "الجهاز الهيكلي", "en": "The Skeletal System" },
+          "lessons": [
+            { "id": "bones-intro", "title": { "ar": "مقدمة في العظام", "en": "Introduction to Bones" }, "durationSec": 20, "video": "assets/videos/lesson1.mp4" },
+            { "id": "joints", "title": { "ar": "المفاصل وأنواعها", "en": "Joints and Their Types" }, "durationSec": 15, "video": "assets/videos/lesson2.mp4" },
+            { "id": "skull", "title": { "ar": "عظام الجمجمة", "en": "Bones of the Skull" }, "durationSec": 25, "video": "assets/videos/lesson3.mp4" }
+          ]
+        },
+        {
+          "id": "muscular",
+          "title": { "ar": "الجهاز العضلي", "en": "The Muscular System" },
+          "lessons": [
+            { "id": "muscle-types", "title": { "ar": "أنواع العضلات", "en": "Types of Muscle" }, "durationSec": 20, "video": "assets/videos/lesson1.mp4" },
+            { "id": "contraction", "title": { "ar": "آلية الانقباض العضلي", "en": "Muscle Contraction" }, "durationSec": 15, "video": "assets/videos/lesson2.mp4" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "physiology-101",
+      "title": { "ar": "مدخل إلى علم وظائف الأعضاء", "en": "Introduction to Physiology" },
+      "instructor": { "ar": "د. خالد العتيبي", "en": "Dr. Khalid Al-Otaibi" },
+      "thumbnail": "assets/images/physiology.svg",
+      "sections": [
+        {
+          "id": "cardio",
+          "title": { "ar": "القلب والدورة الدموية", "en": "Heart and Circulation" },
+          "lessons": [
+            { "id": "heart-anatomy", "title": { "ar": "تركيب القلب", "en": "Structure of the Heart" }, "durationSec": 25, "video": "assets/videos/lesson3.mp4" },
+            { "id": "cardiac-cycle", "title": { "ar": "الدورة القلبية", "en": "The Cardiac Cycle" }, "durationSec": 20, "video": "assets/videos/lesson1.mp4" }
+          ]
+        },
+        {
+          "id": "respiratory",
+          "title": { "ar": "الجهاز التنفسي", "en": "The Respiratory System" },
+          "lessons": [
+            { "id": "lungs", "title": { "ar": "الرئتان وتبادل الغازات", "en": "Lungs and Gas Exchange" }, "durationSec": 15, "video": "assets/videos/lesson2.mp4" },
+            { "id": "breathing-control", "title": { "ar": "التحكم في التنفس (فيديو تالف للتجربة)", "en": "Control of Breathing (intentionally broken video)" }, "durationSec": 30, "video": "assets/videos/missing-lesson.mp4" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pharmacology-101",
+      "title": { "ar": "علم الأدوية (قريبًا)", "en": "Pharmacology (coming soon)" },
+      "instructor": { "ar": "د. نورة الشهري", "en": "Dr. Noura Al-Shehri" },
+      "thumbnail": "assets/images/pharmacology.svg",
+      "sections": []
+    }
+  ]
+}

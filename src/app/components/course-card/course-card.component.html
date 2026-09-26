@@ -1,0 +1,14 @@
+<a class="course-card" [routerLink]="['/courses', course().id]">
+  <img class="course-card-image" [src]="course().thumbnail" alt="" />
+
+  <div class="course-card-body">
+    <h2 class="course-card-title">{{ lang.text(course().title) }}</h2>
+    <p class="course-card-instructor">{{ lang.text(course().instructor) }}</p>
+    <p class="course-card-lessons">{{ getLessonsCount() }} {{ lang.t('lessons') }}</p>
+
+    <div class="progress-bar">
+      <div class="progress-bar-fill" [style.width.%]="getProgress()"></div>
+    </div>
+    <p class="course-card-progress">{{ getProgress() }}% {{ lang.t('completedPercent') }}</p>
+  </div>
+</a>

@@ -1,0 +1,59 @@
+<div class="page-header">
+  <div>
+    <h1>{{ lang.t('myCourses') }}</h1>
+    <p class="page-subtitle">{{ lang.t('coursesSubtitle') }}</p>
+  </div>
+
+  <input
+    type="search"
+    class="search-input"
+    [placeholder]="lang.t('search')"
+    [value]="searchText()"
+    (input)="onSearch($event)"
+  />
+</div>
+
+@if (courseService.loading()) {
+  <div class="state-message">
+    <p class="state-message-title">{{ lang.t('loading') }}</p>
+  </div>
+} @else if (courseService.error()) {
+  <div class="state-message state-message-error">
+    <p class="state-message-title">{{ lang.t('loadError') }}</p>
+    <button type="button" class="button button-primary" (click)="courseService.loadCourses()">
+      {{ lang.t('tryAgain') }}
+    </button>
+  </div>
+} @else {
+  <!-- Continue watching card -->
+  @if (continueWatching(); as item) {
+    <a class="continue-card" [routerLink]="['/courses', item.course.id, 'lessons', item.lesson.id]">
+      <img class="continue-card-image" [src]="item.course.thumbnail" alt="" />
+
+      <div class="continue-card-info">
+        <p class="continue-card-label">{{ lang.t('continueWatching') }}</p>
+        <h2 class="continue-card-title">{{ lang.text(item.lesson.title) }}</h2>
+        <p class="continue-card-course">{{ lang.text(item.course.title) }}</p>
+        <div class="progress-bar">
+          <div class="progress-bar-fill" [style.width.%]="getWatchedPercent()"></div>
+        </div>
+        <p class="continue-card-time">{{ getRemainingTime() | time }} {{ lang.t('remaining') }}</p>
+      </div>
+
+      <span class="button button-primary continue-card-button">{{ lang.t('continue') }}</span>
+    </a>
+  }
+
+  <!-- Courses list -->
+  @if (filteredCourses().length > 0) {
+    <div class="courses-grid">
+      @for (course of filteredCourses(); track course.id) {
+        <app-course-card [course]="course" />
+      }
+    </div>
+  } @else {
+    <div class="state-message">
+      <p class="state-message-title">{{ lang.t('noResults') }}</p>
+    </div>
+  }
+}

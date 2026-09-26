@@ -1,0 +1,108 @@
+.page-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.page-subtitle {
+  margin: 4px 0 0;
+  color: var(--gray-text);
+}
+
+.search-input {
+  width: 320px;
+  max-width: 100%;
+  padding: 10px 14px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 15px;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--main-color);
+}
+
+/* ---------- Continue watching ---------- */
+.continue-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+  padding: 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  background-color: var(--main-color-light);
+  color: inherit;
+  text-decoration: none;
+}
+
+.continue-card-image {
+  width: 160px;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.continue-card-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.continue-card-label {
+  margin: 0;
+  font-size: 13px;
+  font-weight: bold;
+  color: var(--main-color);
+}
+
+.continue-card-title {
+  margin: 0;
+  font-size: 18px;
+}
+
+.continue-card-course,
+.continue-card-time {
+  margin: 0 0 6px;
+  font-size: 14px;
+  color: var(--gray-text);
+}
+
+.continue-card .progress-bar {
+  max-width: 300px;
+  background-color: white;
+}
+
+.continue-card-time {
+  margin-top: 6px;
+}
+
+/* ---------- Courses grid ---------- */
+.courses-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 640px) {
+  .search-input {
+    width: 100%;
+  }
+
+  .continue-card {
+    flex-wrap: wrap;
+  }
+
+  .continue-card-image {
+    width: 110px;
+  }
+
+  .continue-card-button {
+    width: 100%;
+  }
+}

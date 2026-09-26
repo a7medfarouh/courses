@@ -1,0 +1,6 @@
+.not-found-code {
+  margin: 0;
+  font-size: 64px;
+  font-weight: bold;
+  color: var(--main-color);
+}

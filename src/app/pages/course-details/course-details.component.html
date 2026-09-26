@@ -1,0 +1,87 @@
+<a routerLink="/courses" class="back-link">{{ lang.t('backToCourses') }}</a>
+
+<!-- The guard sends the student here with ?locked=true -->
+@if (locked()) {
+  <div class="locked-message">
+    <span>🔒 {{ lang.t('lessonLockedMessage') }}</span>
+    <button type="button" class="locked-message-close" (click)="closeLockedMessage()">
+      {{ lang.t('close') }}
+    </button>
+  </div>
+}
+
+@if (courseService.loading()) {
+  <div class="state-message">
+    <p class="state-message-title">{{ lang.t('loading') }}</p>
+  </div>
+} @else if (courseService.error()) {
+  <div class="state-message state-message-error">
+    <p class="state-message-title">{{ lang.t('loadError') }}</p>
+  </div>
+} @else {
+  @if (course(); as course) {
+    <div class="course-header">
+      <img class="course-image" [src]="course.thumbnail" alt="" />
+
+      <div class="course-info">
+        <h1>{{ lang.text(course.title) }}</h1>
+        <p class="course-instructor">
+          {{ lang.text(course.instructor) }} · {{ getLessonsCount(course) }} {{ lang.t('lessons') }}
+        </p>
+
+        <p class="course-progress-text">
+          {{ lang.t('yourProgress') }}: <strong>{{ getProgress(course) }}%</strong>
+        </p>
+        <div class="progress-bar">
+          <div class="progress-bar-fill" [style.width.%]="getProgress(course)"></div>
+        </div>
+      </div>
+    </div>
+
+    @if (getLessonsCount(course) === 0) {
+      <div class="state-message">
+        <p class="state-message-title">{{ lang.t('noLessons') }}</p>
+      </div>
+    }
+
+    @for (section of course.sections; track section.id) {
+      <div class="section">
+        <h2 class="section-title">{{ lang.text(section.title) }}</h2>
+
+        <ul class="lessons-list">
+          @for (lesson of section.lessons; track lesson.id) {
+            <li>
+              @if (isLocked(course, lesson)) {
+                <div class="lesson-item lesson-item-locked">
+                  <span class="lesson-icon">🔒</span>
+                  <span class="lesson-title">{{ lang.text(lesson.title) }}</span>
+                  <span class="lesson-duration">{{ lesson.durationSec | time }}</span>
+                  <span class="status-badge">{{ lang.t('locked') }}</span>
+                </div>
+              } @else {
+                <a class="lesson-item" [routerLink]="['lessons', lesson.id]">
+                  <span class="lesson-icon">
+                    @if (getStatus(course, lesson) === 'completed') {
+                      ✅
+                    } @else {
+                      ▶️
+                    }
+                  </span>
+                  <span class="lesson-title">{{ lang.text(lesson.title) }}</span>
+                  <span class="lesson-duration">{{ lesson.durationSec | time }}</span>
+                  <span class="status-badge" [class]="'status-' + getStatus(course, lesson)">
+                    {{ lang.t(getStatus(course, lesson)) }}
+                  </span>
+                </a>
+              }
+            </li>
+          }
+        </ul>
+      </div>
+    }
+  } @else {
+    <div class="state-message">
+      <p class="state-message-title">{{ lang.t('courseNotFound') }}</p>
+    </div>
+  }
+}

@@ -1,0 +1,57 @@
+.lesson-page {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.lesson-video {
+  flex: 2;
+  min-width: 0;
+}
+
+.shortcuts-text {
+  margin: 8px 0 0;
+  font-size: 13px;
+  color: var(--gray-text);
+}
+
+.lesson-sidebar {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  background-color: white;
+}
+
+.lesson-title {
+  font-size: 22px;
+}
+
+.completed-badge {
+  align-self: flex-start;
+  margin: 0;
+  padding: 2px 12px;
+  border-radius: 20px;
+  background-color: var(--green-light);
+  color: var(--green);
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.hint-text {
+  margin: 0;
+  font-size: 14px;
+  text-align: center;
+  color: var(--gray-text);
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 900px) {
+  .lesson-page {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
